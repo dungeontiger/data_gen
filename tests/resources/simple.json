@@ -1,0 +1,17 @@
+{
+    "name": "simple_test",
+    "seed": 56,  
+    "output_location": ".",
+    "tables": [
+       {
+           "name":"table1",
+           "rows": 10,
+           "columns": [
+                {
+                    "name": "measure1",
+                    "valueExpression": "random.ramdom()"
+                }
+           ]
+       }
+    ]
+}
