@@ -1,3 +1,4 @@
+import os
 from data_gen.table import Table
 
 
@@ -11,3 +12,11 @@ class Dataset:
     def generate(self):
         for t in self.tables:
             t.generate()
+
+    def write(self):
+        try:
+            os.makedirs(self.output_location)
+        except FileExistsError:
+            pass
+        for t in self.tables:
+            t.write(self.output_location)

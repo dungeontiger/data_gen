@@ -15,3 +15,10 @@ There are various types of columns
 - dates
 - categories
 - identifiers (keys)
+
+Dates are treated as YYYY-MM-DD for simplicity, which is the ISO format anyway
+
+Rows on the table are really a row limit.  If another column, like a sequential date says its done
+generation stops.
+
+categories are going to be complicated....

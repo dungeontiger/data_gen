@@ -1,15 +1,22 @@
 {
     "name": "simple_test",
     "seed": 56,  
-    "output_location": ".",
+    "output_location": "tests/test_output",
     "tables": [
        {
            "name":"table1",
            "rows": 10,
            "columns": [
+               {
+                    "name": "date1",
+                    "sequentialDate": {
+                        "startDate": "1990-01-01",
+                        "endDate": "1991-01-01"
+                    }
+               },
                 {
                     "name": "measure1",
-                    "valueExpression": "random.ramdom()"
+                    "valueExpression": "random()"
                 }
            ]
        }

@@ -1,4 +1,5 @@
 import unittest
+import os
 from data_gen.table import Table
 
 
@@ -33,6 +34,17 @@ class TestTable(unittest.TestCase):
         t.generate()
         rows = t.get_rows()
         self.assertTrue(rows[0][1] == rows[0][0] * 100, 'Simple column ref')
+
+    def test_write_csv(self):
+        json = {'name': 't', 'rows': 3, 'columns': [
+            {'name': 'm1', 'valueExpression': 'random()'},
+            {'name': 'm2', 'valueExpression': 'random()'},
+        ]}
+        t = Table(json)
+        t.generate()
+        dir = 'tests/test_output'
+        os.makedirs(dir)
+        t.write(dir)
 
 
 if __name__ == '__main__':
