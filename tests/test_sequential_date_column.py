@@ -21,3 +21,12 @@ class TestSequentialDateColumn(unittest.TestCase):
         # generate once more and it should stop
         c.generate({})
         self.assertTrue(c.stop())
+
+    def test_two_rows_per_date(self):
+        c = SequentialDateColumn({'name': 'd', 'sequentialDate': {'startDate': '1990-01-01', 'endDate': '1990-01-05', 'minRowsPerDay': 2, 'maxRowsPerDay': 2}})  # noqa E50
+        v1 = c.generate({})
+        v2 = c.generate({})
+        self.assertEqual(v1, v2, 'Two rows per date on the first date')
+        v1 = c.generate({})
+        v2 = c.generate({})
+        self.assertEqual(v1, v2, 'Two rows per date')

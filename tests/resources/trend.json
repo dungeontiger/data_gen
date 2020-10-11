@@ -1,0 +1,27 @@
+{
+    "name": "trend",
+    "output_location": "tests/test_output",
+    "tables": [
+        {
+            "name": "trend_test",
+            "rows": 90,
+            "columns": [
+                {
+                    "name": "Order Date",
+                    "sequentialDate": {
+                        "startDate": "2020-01-01",
+                        "endDate": "2020-12-31"
+                    }
+                },
+                {
+                    "name": "Sales",
+                    "valueExpression": "round(1000 + 1000 * random(), 2)",
+                    "trends": {
+                        "dateColumn": "Order Date",
+                        "monthly": "uniform(0.1, 0.3)"
+                    }
+                }
+            ]
+        }
+    ]
+}

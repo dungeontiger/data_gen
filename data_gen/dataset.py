@@ -6,7 +6,7 @@ class Dataset:
     def __init__(self, json):
         self.name = json['name']
         self.output_location = json['output_location']
-        self.seed = json['seed']
+        self.seed = json.get('seed')
         self.tables = [Table(t) for t in json['tables']]
 
     def generate(self):
@@ -14,9 +14,10 @@ class Dataset:
             t.generate()
 
     def write(self):
+        dir = os.path.join(self.output_location, self.name)
         try:
-            os.makedirs(self.output_location)
+            os.makedirs(dir)
         except FileExistsError:
             pass
         for t in self.tables:
-            t.write(self.output_location)
+            t.write(dir)

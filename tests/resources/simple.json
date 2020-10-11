@@ -16,7 +16,7 @@
                },
                 {
                     "name": "measure1",
-                    "valueExpression": "random()"
+                    "valueExpression": "round(random(), 3)"
                 }
            ]
        }
