@@ -33,22 +33,21 @@ class ValueExpressionColumn(Column):
     def _apply_trend(self, value):
         v = value
         if self.trends:
-            if not self.last_date:
+            if self.last_date != self.column_values[self.trend_date_ref]:
+                if self.daily:
+                    daily = eval(self.daily, self.eval_global)
+                if self.monthly:
+                    monthly = eval(self.monthly, self.eval_global)
+                    daily = monthly / ValueExpressionColumn.days_per_month
+                if self.quarterly:
+                    quarterly = eval(self.quarterly, self.eval_global)
+                    daily = quarterly / ValueExpressionColumn.days_per_quarter
+                if self.yearly:
+                    yearly = eval(self.yearly, self.eval_global)
+                    daily = yearly / ValueExpressionColumn.days_per_year
+                self.accum_trend += daily
+                v += v * self.accum_trend
                 self.last_date = self.column_values[self.trend_date_ref]
-            if self.daily:
-                daily = eval(self.daily, self.eval_global)
-            if self.monthly:
-                monthly = eval(self.monthly, self.eval_global)
-                daily = monthly / ValueExpressionColumn.days_per_month
-            if self.quarterly:
-                quarterly = eval(self.quarterly, self.eval_global)
-                daily = quarterly / ValueExpressionColumn.days_per_quarter
-            if self.yearly:
-                yearly = eval(self.yearly, self.eval_global)
-                daily = yearly / ValueExpressionColumn.days_per_year
-            self.accum_trend += daily
-            v += v * self.accum_trend
-            self.last_date = self.column_values[self.trend_date_ref]
         return v
 
     def column(self, name):

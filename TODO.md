@@ -1,4 +1,3 @@
-- rows per date
 - then keys, categories
 
 Date hierarchies
