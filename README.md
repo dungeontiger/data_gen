@@ -55,3 +55,4 @@ However, if you want to use all these values, use random:False and you will be g
 Sequential integers can be created by setting startInt and endInt.  Once endInt is reached generation will stop, unless loop is set to true.  In this case it will go back to the beginning.
 You can use this to create string keys by also setting the prefix.
 
+You can generate random people's names by setting 'personName' to first, last or full

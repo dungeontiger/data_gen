@@ -6,6 +6,7 @@ from data_gen.random_date_column import RandomDateColumn
 from data_gen.sequential_date_column import SequentialDateColumn
 from data_gen.values_column import ValuesColumn
 from data_gen.key_column import KeyColumn
+from data_gen.person_name_column import PersonNameColumn
 
 
 class TestColumnFactory(unittest.TestCase):
@@ -33,3 +34,8 @@ class TestColumnFactory(unittest.TestCase):
         with open('tests/resources/columns/key_column.json') as f:
             c = create_column(json.load(f))
         self.assertIsInstance(c, KeyColumn, 'Create the correct key column')
+
+    def test_create_person_name_column(self):
+        with open('tests/resources/columns/person_name_column.json') as f:
+            c = create_column(json.load(f))
+        self.assertIsInstance(c, PersonNameColumn, 'Create the correct person name column')  # noqa ES501
