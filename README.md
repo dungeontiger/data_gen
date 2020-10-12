@@ -48,3 +48,6 @@ geography is built in.
 You can ask for a list of continents, you can ask for a random one or not and you can stipulate unique or not
 When all you ask for unquie, using all unique values is a stop condition
 This helps to create a dimension table
+
+You can specifiy the values for columns.  By default each row will choice a random value from this list.
+However, if you want to use all these values, use random:False and you will be given each value in order.  It will stop when out of values.  This is a good way to make a dimension table.

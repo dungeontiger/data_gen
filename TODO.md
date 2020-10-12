@@ -20,9 +20,9 @@ handle foreign keys, star schemas
 
 implement and test seeds
 
-test cases for the column factory
-
 add a trend start and end date
 allow multiple trends, some start and end on different dates and referencing different date columns
 
 proper tests for all the trend stuff
+
+anolmolies use a valueexpression, if true, apply the change
