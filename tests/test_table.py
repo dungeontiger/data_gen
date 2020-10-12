@@ -43,7 +43,11 @@ class TestTable(unittest.TestCase):
         t = Table(json)
         t.generate()
         dir = 'tests/test_output'
-        os.makedirs(dir)
+        # TODO move to class method, do only once
+        try:
+            os.makedirs(dir)
+        except FileExistsError:
+            pass
         t.write(dir)
 
 

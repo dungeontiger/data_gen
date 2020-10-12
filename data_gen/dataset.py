@@ -12,6 +12,8 @@ class Dataset:
     def generate(self):
         for t in self.tables:
             t.generate()
+        # TODO accumlate errors and return them
+        return []
 
     def write(self):
         dir = os.path.join(self.output_location, self.name)

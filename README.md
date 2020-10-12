@@ -43,3 +43,8 @@ Apply an accumulation amount based on a date column
 best practise is to generate your dimension tables first, then use a foreign key
 for example, generate a bunch of random geography places first,
 then reference them with a choice from your fact table
+
+geography is built in.
+You can ask for a list of continents, you can ask for a random one or not and you can stipulate unique or not
+When all you ask for unquie, using all unique values is a stop condition
+This helps to create a dimension table

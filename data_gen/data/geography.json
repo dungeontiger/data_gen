@@ -1,0 +1,65 @@
+{
+    "North America": {
+        "Canada": {
+
+        },
+        "United States": {
+
+        }, 
+        "Mexico": {
+
+        }
+    },
+    "South America": {
+        "Brazil": {
+
+        },
+        "Argentina": {
+
+        },
+        "Colombia": {
+
+        }
+    },
+    "Europe": {
+        "United Kingdom": {
+
+        },
+        "Germany": {
+
+        },
+        "France": {
+
+        },
+        "Sweden": {
+
+        }
+    },
+    "Asia": {
+        "China": {
+
+        },
+        "Japan": {
+
+        }
+    },
+    "Africa": {
+        "Eqypt": {
+
+        },
+        "South Africa": {
+            
+        }
+    },
+    "Australia": {
+        "Australia": {
+
+        },
+        "New Zealand": {
+
+        }
+    },
+    "Antarctica": {
+
+    }
+}
