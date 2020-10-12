@@ -1,5 +1,3 @@
-- then keys, categories
-
 Date hierarchies
 Indicate start date, end date and levels (year, month, half, quarter, week, etc)
 

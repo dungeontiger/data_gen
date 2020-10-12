@@ -51,3 +51,7 @@ This helps to create a dimension table
 
 You can specifiy the values for columns.  By default each row will choice a random value from this list.
 However, if you want to use all these values, use random:False and you will be given each value in order.  It will stop when out of values.  This is a good way to make a dimension table.
+
+Sequential integers can be created by setting startInt and endInt.  Once endInt is reached generation will stop, unless loop is set to true.  In this case it will go back to the beginning.
+You can use this to create string keys by also setting the prefix.
+
