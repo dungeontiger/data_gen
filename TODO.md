@@ -24,3 +24,9 @@ allow multiple trends, some start and end on different dates and referencing dif
 proper tests for all the trend stuff
 
 anolmolies use a valueexpression, if true, apply the change
+
+need some asserts in the dataset test cases
+
+better way to import all the names of the random module so I don't miss any, also math functions I suppose too
+
+add more names so they are plenty of combinations, include european and asian names / characters

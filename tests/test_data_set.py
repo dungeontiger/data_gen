@@ -15,3 +15,9 @@ class TestDataset(unittest.TestCase):
             d = Dataset(json.load(f))
         d.generate()
         d.write()
+
+    def test_staff_table(self):
+        with open('tests/resources/staff_table.json') as f:
+            d = Dataset(json.load(f))
+        d.generate()
+        d.write()

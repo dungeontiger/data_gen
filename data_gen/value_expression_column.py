@@ -13,7 +13,9 @@ class ValueExpressionColumn(Column):
         self.value_expression = json['valueExpression']
         self.eval_global = {'column': self.column,
                             'random': random.random,
-                            'uniform': random.uniform}
+                            'uniform': random.uniform,
+                            'randint': random.randint,
+                            'normalvariate': random.normalvariate}
         self.trends = json.get('trends')
         if self.trends:
             self.trend_date_ref = self.trends['dateColumn']

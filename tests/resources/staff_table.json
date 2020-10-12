@@ -1,0 +1,33 @@
+{
+    "name": "Staff_Table_Example",
+    "output_location": "tests/test_output",
+    "tables": [
+        {
+            "name": "Staff",
+            "rows": 20,
+            "columns": [
+                {
+                    "name": "Staff_Id",
+                    "startInt": 1,
+                    "endInt": 100,
+                    "prefix": "ID"
+                },
+                {
+                    "name": "Staff_Name",
+                    "personName": "full"
+                },
+                {
+                    "name": "DOB",
+                    "randomDate": {
+                        "startDate": "1950-01-01",
+                        "endDate": "2002-01-01"
+                    }
+                },
+                {
+                    "name": "Years_Of_Service",
+                    "valueExpression": "round(normalvariate(10, 3))"
+                }
+            ]
+        }
+    ]  
+}
