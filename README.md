@@ -1,6 +1,7 @@
 # data_gen
 A tool to generate data for use in testing, demos and machine learning training.
 
+# This is an early work in progress
 
 valueExpression can be any python expression.
 You have access to all methods of the random module

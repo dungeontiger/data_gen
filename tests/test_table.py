@@ -4,15 +4,21 @@ from data_gen.table import Table
 
 
 class TestTable(unittest.TestCase):
+    def __init__(self, *args, **kwargs):
+        super(TestTable, self).__init__(*args, **kwargs)
+        self.output_dir = 'tests/test_output'
+        try:
+            os.makedirs(self.output_dir)
+        except FileExistsError:
+            pass
+
     def test_single_column(self):
         json = {'name': 't', 'rows': 3, 'columns': [
             {'name': 'm', 'valueExpression': 'random()'}
         ]}
         t = Table(json)
         t.generate()
-        rows = t.get_rows()
-        self.assertTrue(len(rows) == 3, 'There are three rows')
-        self.assertTrue(len(rows[0]) == 1, 'Only one column')
+        self.assertTrue(len(t.get_columns()) == 1, 'Only one column')
 
     def test_two_column(self):
         json = {'name': 't', 'rows': 3, 'columns': [
@@ -21,9 +27,7 @@ class TestTable(unittest.TestCase):
         ]}
         t = Table(json)
         t.generate()
-        rows = t.get_rows()
-        self.assertTrue(len(rows) == 3, 'Only three rows')
-        self.assertTrue(len(rows[0]) == 2, 'Two columns')
+        self.assertTrue(len(t.get_columns()) == 2, 'Two columns')
 
     def test_column_reference(self):
         json = {'name': 't', 'rows': 3, 'columns': [
@@ -32,8 +36,7 @@ class TestTable(unittest.TestCase):
         ]}
         t = Table(json)
         t.generate()
-        rows = t.get_rows()
-        self.assertTrue(rows[0][1] == rows[0][0] * 100, 'Simple column ref')
+        self.assertTrue(t.get_value('m2') == t.get_value('m1') * 100, 'Simple column ref')  # noqa ES501
 
     def test_write_csv(self):
         json = {'name': 't', 'rows': 3, 'columns': [
@@ -42,14 +45,5 @@ class TestTable(unittest.TestCase):
         ]}
         t = Table(json)
         t.generate()
-        dir = 'tests/test_output'
-        # TODO move to class method, do only once
-        try:
-            os.makedirs(dir)
-        except FileExistsError:
-            pass
-        t.write(dir)
-
-
-if __name__ == '__main__':
-    unittest.main()
+        # TODO: need some asserts
+        t.write(self.output_dir)

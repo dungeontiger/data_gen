@@ -8,8 +8,8 @@ class ValueExpressionColumn(Column):
     days_per_quarter = 90
     days_per_year = 365
 
-    def __init__(self, json):
-        super().__init__(json['name'])
+    def __init__(self, json, get_value=None):
+        super().__init__(json['name'], get_value)
         self.value_expression = json['valueExpression']
         self.eval_global = {'column': self.column,
                             'random': random.random,
@@ -26,16 +26,16 @@ class ValueExpressionColumn(Column):
             self.last_date = None
             self.accum_trend = 0
 
-    def generate(self, column_values):
-        self.column_values = column_values
+    def generate(self):
         v = eval(self.value_expression, self.eval_global)
         v = self._apply_trend(v)
+        self.values.append(v)
         return v
 
     def _apply_trend(self, value):
         v = value
         if self.trends:
-            if self.last_date != self.column_values[self.trend_date_ref]:
+            if self.last_date != self.get_value(self.trend_date_ref):
                 if self.daily:
                     daily = eval(self.daily, self.eval_global)
                 if self.monthly:
@@ -49,9 +49,10 @@ class ValueExpressionColumn(Column):
                     daily = yearly / ValueExpressionColumn.days_per_year
                 self.accum_trend += daily
                 v += v * self.accum_trend
-                self.last_date = self.column_values[self.trend_date_ref]
+                self.last_date = self.get_value(self.trend_date_ref)
         return v
 
+    # TODO: better more generic name
     def column(self, name):
         # this method can be called from the value expression
-        return self.column_values[name]
+        return self.get_value(name)

@@ -1,3 +1,7 @@
+consider using pytest
+
+Columns should hold on to their values, not the table.
+
 Date hierarchies
 Indicate start date, end date and levels (year, month, half, quarter, week, etc)
 

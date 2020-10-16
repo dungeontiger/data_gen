@@ -1,9 +1,11 @@
 class Column:
-    def __init__(self, name):
+    def __init__(self, name, get_value):
         self.name = name
+        self.values = []
+        self._get_value = get_value
 
     # returns the generated value
-    def generate(self, column_values):
+    def generate(self):
         return None
 
     # returns true of a condition in this column says it should stop
@@ -13,3 +15,8 @@ class Column:
 
     def get_name(self):
         return self.name
+
+    def get_value(self, column_name, table_name=None):
+        if table_name is None and column_name == self.name:
+            return self.values[-1]
+        return self._get_value(column_name, table_name)
