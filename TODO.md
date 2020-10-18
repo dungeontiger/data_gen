@@ -1,14 +1,14 @@
 Before release:
-- proper unit tests
 - multiple trends
-- trend start stop date
 - analomies
-- many people's names
 - date hierarchy
 - geography hierarchy
 - product hierarchy
 - error reporting
 - documentation
+- proper unit tests
+- code coverage
+- fix lint issues
 - build system on github
 
 consider using pytest

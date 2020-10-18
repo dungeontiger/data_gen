@@ -1,5 +1,6 @@
 # for not this is here to make the expressions eval, need to pass it instead
 import random
+from datetime import date
 from data_gen.column import Column
 
 
@@ -24,6 +25,12 @@ class ValueExpressionColumn(Column):
             self.monthly = self.trends.get('monthly')
             self.quarterly = self.trends.get('quarterly')
             self.yearly = self.trends.get('yearly')
+            self.trend_start_date = self.trends.get('startDate')
+            if self.trend_start_date:
+                self.trend_start_date = date.fromisoformat(self.trend_start_date)
+            self.trend_end_date = self.trends.get('endDate')
+            if self.trend_end_date:
+                self.trend_end_date = date.fromisoformat(self.trend_end_date)
             self.last_date = None
             self.accum_trend = 0
 
@@ -35,8 +42,9 @@ class ValueExpressionColumn(Column):
 
     def _apply_trend(self, value):
         v = value
-        if self.trends:
-            if self.last_date != self.get_value(self.trend_date_ref):
+        d = date.fromisoformat(self.get_value(self.trend_date_ref))
+        if self.trends and (self.trend_start_date is None or d >= self.trend_start_date) and (self.trend_end_date is None or d <= self.trend_end_date):
+            if self.last_date != d:
                 if self.daily:
                     daily = eval(self.daily, self.eval_global)
                 if self.monthly:
@@ -50,7 +58,7 @@ class ValueExpressionColumn(Column):
                     daily = yearly / ValueExpressionColumn.days_per_year
                 self.accum_trend += daily
                 v += v * self.accum_trend
-                self.last_date = self.get_value(self.trend_date_ref)
+                self.last_date = d
         return v
 
     # TODO: better more generic name

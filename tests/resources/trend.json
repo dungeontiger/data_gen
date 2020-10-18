@@ -4,7 +4,7 @@
     "tables": [
         {
             "name": "trend_test",
-            "rows": 90,
+            "rows": 5000,
             "columns": [
                 {
                     "name": "Order Date",
@@ -15,10 +15,12 @@
                 },
                 {
                     "name": "Sales",
-                    "valueExpression": "round(1000 + 1000 * random(), 2)",
+                    "valueExpression": "round(1000 + 100 * random(), 2)",
                     "trends": {
                         "dateColumn": "Order Date",
-                        "monthly": "uniform(0.1, 0.3)"
+                        "monthly": "1",
+                        "startDate": "2020-05-01",
+                        "endDate": "2020-05-31"
                     }
                 }
             ]
