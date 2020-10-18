@@ -1,0 +1,45 @@
+{
+    "name":"two_joined_tables",
+    "output_location": "tests/test_output",
+    "tables": [
+        {
+            "name": "STAFF",
+            "rows": 25,
+            "columns": [
+                {
+                    "name": "ID",
+                    "startInt": 100,
+                    "endInt": 999,
+                    "prefix": "ID"
+                },
+                {
+                    "name": "NAME",
+                    "personName": "full"
+                }
+            ]
+        },
+        {
+            "name": "SALES",
+            "rows": 1000,
+            "columns": [
+                {
+                    "name": "ORDER_DATE",
+                    "sequentialDate": {
+                        "startDate": "2020-01-01",
+                        "endDate": "2020-12-31",
+                        "minRowsPerDay": 1,
+                        "maxRowsPerDay": 10
+                    }
+                },
+                {
+                    "name": "SALES_AMOUNT",
+                    "valueExpression": "round(random() * 1000, 2)"
+                },
+                {
+                    "name": "SALES_STAFF",
+                    "valueExpression": "get_value('ID', 'STAFF', random_value=True)"
+                }
+            ]
+        }
+    ]
+}

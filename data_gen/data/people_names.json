@@ -2,11 +2,24 @@
     "firstNames": [
         "Tom",
         "Dick",
-        "Harry"
+        "Harry",
+        "Bob",
+        "Dave",
+        "Mike",
+        "Linda",
+        "Cindy",
+        "Elizabeth",
+        "Susan",
+        "Jane"
     ],
     "lastNames": [
         "Smith",
         "Jones",
-        "Lake"
+        "Lake",
+        "Turner",
+        "Lee",
+        "Magellen",
+        "Lockheart",
+        "Emerson"
     ]
 }

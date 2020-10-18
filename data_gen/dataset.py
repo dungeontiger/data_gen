@@ -26,9 +26,9 @@ class Dataset:
         for t in self.tables:
             t.write(dir)
 
-    def get_value(self, column_name, table_name):
+    def get_value(self, column_name, table_name, random_value=False):
         for t in self.tables:
             if t.get_name() == table_name:
-                return t.get_value(column_name)
+                return t.get_value(column_name, random_value=random_value)
         # TODO: error, could not find table
         return None

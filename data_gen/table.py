@@ -40,14 +40,14 @@ class Table:
     def get_name(self):
         return self.name
 
-    def get_value(self, column_name, table_name=None):
+    def get_value(self, column_name, table_name=None, random_value=False):
         if table_name is None or table_name == self.name:
             for c in self.columns:
                 if c.get_name() == column_name:
-                    return c.get_value(column_name)
+                    return c.get_value(column_name, random_value=random_value)
             # TODO: Error, column name not found in this table
             return None
-        return self._get_value(column_name, table_name)
+        return self._get_value(column_name, table_name, random_value=random_value)
 
     def get_columns(self):
         return self.columns

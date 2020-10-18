@@ -1,6 +1,17 @@
-consider using pytest
+Before release:
+- proper unit tests
+- multiple trends
+- trend start stop date
+- analomies
+- many people's names
+- date hierarchy
+- geography hierarchy
+- product hierarchy
+- error reporting
+- documentation
+- build system on github
 
-Columns should hold on to their values, not the table.
+consider using pytest
 
 Date hierarchies
 Indicate start date, end date and levels (year, month, half, quarter, week, etc)
@@ -17,8 +28,6 @@ state(countries) returns a random state filtered by the list of countries
 city(countries/states) returns a random city filtered by country and states
 this allows you to get the correct london or paris
 maybe allow optionally to get code too
-
-handle foreign keys, star schemas
 
 implement and test seeds
 

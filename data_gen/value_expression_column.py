@@ -15,7 +15,8 @@ class ValueExpressionColumn(Column):
                             'random': random.random,
                             'uniform': random.uniform,
                             'randint': random.randint,
-                            'normalvariate': random.normalvariate}
+                            'normalvariate': random.normalvariate,
+                            'get_value': self.get_value}
         self.trends = json.get('trends')
         if self.trends:
             self.trend_date_ref = self.trends['dateColumn']

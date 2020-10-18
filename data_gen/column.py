@@ -1,3 +1,6 @@
+import random
+
+
 class Column:
     def __init__(self, name, get_value):
         self.name = name
@@ -16,7 +19,9 @@ class Column:
     def get_name(self):
         return self.name
 
-    def get_value(self, column_name, table_name=None):
+    def get_value(self, column_name, table_name=None, random_value=False):
         if table_name is None and column_name == self.name:
+            if random_value:
+                return random.choice(self.values)
             return self.values[-1]
-        return self._get_value(column_name, table_name)
+        return self._get_value(column_name, table_name, random_value)

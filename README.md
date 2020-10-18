@@ -57,3 +57,9 @@ Sequential integers can be created by setting startInt and endInt.  Once endInt 
 You can use this to create string keys by also setting the prefix.
 
 You can generate random people's names by setting 'personName' to first, last or full
+
+get_value gets a value from a column, you have to specifiy the column's name.  If you do not specify the table name, it defaults to the same table.  This makes it easy to get the current value from a another column in the same table.
+
+If you specify a table name, it will look for the column in that table and get its last value.
+
+You can also specify random_value = True to get a random value.  This is useful when creating foreign keys.
