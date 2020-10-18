@@ -63,3 +63,7 @@ get_value gets a value from a column, you have to specifiy the column's name.  I
 If you specify a table name, it will look for the column in that table and get its last value.
 
 You can also specify random_value = True to get a random value.  This is useful when creating foreign keys.
+
+People's names are only from the US right now.  Most common ones.
+By default you will get a mix of female and male first names.  You can ask for one or the other by specifying sex='M' or sex='F'  The default is sex='B'.  Not dealing with other or non-binary at this point.
+No guarantee that the names are unique, but that happens in real life too.
