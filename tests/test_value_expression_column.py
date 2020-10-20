@@ -15,7 +15,7 @@ class TestValueExpressionColumn(unittest.TestCase):
         self.assertAlmostEqual(v, 0.7706, places=3, msg='eval random() failed') # noqa ES501
 
     def test_column_reference(self):
-        def get_ref(s, n):
+        def get_ref(s, c, t):
             return 2
         c = ValueExpressionColumn({'name': 'measure', 'valueExpression': 'column("m1")*100'}, get_ref) # noqa E501
         v = c.generate()

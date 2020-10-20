@@ -32,7 +32,7 @@ class ValueExpressionColumn(Column):
             if self.trend_end_date:
                 self.trend_end_date = date.fromisoformat(self.trend_end_date)
             self.last_date = None
-            self.accum_trend = 0
+            self.accum_trend = None
 
     def generate(self):
         v = eval(self.value_expression, self.eval_global)
@@ -41,24 +41,32 @@ class ValueExpressionColumn(Column):
         return v
 
     def _apply_trend(self, value):
+        # there is some complex logic here
+        # first, if there is no trend defined there is nothing to do
+        # if the current date is greater than the start date we need to apply a trend
+        # if the current date is not the same as the previous one (different day) modify the trend value by the daily amount
         v = value
-        d = date.fromisoformat(self.get_value(self.trend_date_ref))
-        if self.trends and (self.trend_start_date is None or d >= self.trend_start_date) and (self.trend_end_date is None or d <= self.trend_end_date):
-            if self.last_date != d:
-                if self.daily:
-                    daily = eval(self.daily, self.eval_global)
-                if self.monthly:
-                    monthly = eval(self.monthly, self.eval_global)
-                    daily = monthly / ValueExpressionColumn.days_per_month
-                if self.quarterly:
-                    quarterly = eval(self.quarterly, self.eval_global)
-                    daily = quarterly / ValueExpressionColumn.days_per_quarter
-                if self.yearly:
-                    yearly = eval(self.yearly, self.eval_global)
-                    daily = yearly / ValueExpressionColumn.days_per_year
-                self.accum_trend += daily
-                v += v * self.accum_trend
-                self.last_date = d
+        if self.trends:
+            d = date.fromisoformat(self.get_value(self.trend_date_ref))
+            if (self.trend_start_date is None or d >= self.trend_start_date) and (self.trend_end_date is None or d <= self.trend_end_date):
+                if self.trend_start_date != d:
+                    if self.daily:
+                        daily = eval(self.daily, self.eval_global)
+                    if self.monthly:
+                        monthly = eval(self.monthly, self.eval_global)
+                        daily = monthly / ValueExpressionColumn.days_per_month
+                    if self.quarterly:
+                        quarterly = eval(self.quarterly, self.eval_global)
+                        daily = quarterly / ValueExpressionColumn.days_per_quarter
+                    if self.yearly:
+                        yearly = eval(self.yearly, self.eval_global)
+                        daily = yearly / ValueExpressionColumn.days_per_year
+                    if self.accum_trend:
+                        self.accum_trend += daily
+                    else:
+                        self.accum_trend = daily
+            if self.accum_trend:
+                v = v + v * self.accum_trend
         return v
 
     # TODO: better more generic name

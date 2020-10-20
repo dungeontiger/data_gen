@@ -47,3 +47,14 @@ class TestTable(unittest.TestCase):
         t.generate()
         # TODO: need some asserts
         t.write(self.output_dir)
+
+    def test_simple_trend(self):
+        json = {'name': 't', 'rows': 5, 'columns': [
+            {'name': 'd', 'sequentialDate': {'startDate': '2000-01-01', 'endDate': '2000-02-01'}},
+            {'name': 'v', 'valueExpression': '10', 'trends': {'dateColumn': 'd', 'daily': '0.1'}},
+        ]}
+        t = Table(json)
+        t.generate()
+        c = t.get_columns()[1]
+        self.assertEquals(c.values[0], 11.0)
+        self.assertEquals(c.values[4], 15.0)
