@@ -1,1 +1,1 @@
-python3 -m unittest
+coverage run --source=data_gen -m unittest

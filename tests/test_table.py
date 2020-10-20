@@ -56,5 +56,7 @@ class TestTable(unittest.TestCase):
         t = Table(json)
         t.generate()
         c = t.get_columns()[1]
-        self.assertEquals(c.values[0], 11.0)
-        self.assertEquals(c.values[4], 15.0)
+        self.assertEqual(c.values[0], 11.0)
+        self.assertEqual(c.values[4], 15.0)
+
+    # TODO: test non daily trends and start and end dates

@@ -7,11 +7,9 @@ Before release:
 - error reporting
 - documentation
 - proper unit tests
-- code coverage
+- code coverage (coverage)
 - fix lint issues
 - build system on github
-
-consider using pytest
 
 Date hierarchies
 Indicate start date, end date and levels (year, month, half, quarter, week, etc)
