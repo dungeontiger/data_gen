@@ -33,10 +33,19 @@ class ValueExpressionColumn(Column):
                 self.trend_end_date = date.fromisoformat(self.trend_end_date)
             self.last_date = None
             self.accum_trend = None
+        self.anomalies = json.get('anomalies')
 
     def generate(self):
         v = eval(self.value_expression, self.eval_global)
+        # this value needs to be immediately available in case of get_value() in trend or anomalies
+        self.values.append(v)
         v = self._apply_trend(v)
+        # update the last value
+        self.values.pop()
+        self.values.append(v)
+        v = self._apply_anomalies(v)
+        # update the last value
+        self.values.pop()
         self.values.append(v)
         return v
 
@@ -67,6 +76,13 @@ class ValueExpressionColumn(Column):
                         self.accum_trend = daily
             if self.accum_trend:
                 v = v + v * self.accum_trend
+        return v
+
+    def _apply_anomalies(self, v):
+        if self.anomalies:
+            for a in self.anomalies:
+                if eval(a['condition'], self.eval_global):
+                    v = eval(a['value'], self.eval_global)
         return v
 
     # TODO: better more generic name

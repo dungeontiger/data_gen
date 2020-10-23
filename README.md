@@ -67,3 +67,9 @@ You can also specify random_value = True to get a random value.  This is useful 
 People's names are only from the US right now.  Most common ones.
 By default you will get a mix of female and male first names.  You can ask for one or the other by specifying sex='M' or sex='F'  The default is sex='B'.  Not dealing with other or non-binary at this point.
 No guarantee that the names are unique, but that happens in real life too.
+
+Values are determined from the expression
+Then a trend is applied (if applicable)
+Then anomalies are applied in the order of definition
+anomalies SET the value, so if you want to update the current value, use 'get_value() + 100'
+Both condition and value of an anomaly are expressions that are evaluated

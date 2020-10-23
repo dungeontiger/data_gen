@@ -1,15 +1,18 @@
 Before release:
 - multiple trends
-- analomies
+- random references
+- math reference
 - date hierarchy
 - geography hierarchy
 - product hierarchy
 - error reporting
 - documentation
+- examples
 - proper unit tests
-- code coverage (coverage)
 - fix lint issues
 - build system on github
+
+- difference between adding to a value and setting a value?
 
 Date hierarchies
 Indicate start date, end date and levels (year, month, half, quarter, week, etc)

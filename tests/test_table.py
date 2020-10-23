@@ -59,4 +59,14 @@ class TestTable(unittest.TestCase):
         self.assertEqual(c.values[0], 11.0)
         self.assertEqual(c.values[4], 15.0)
 
+    def test_anomaly(self):
+        json = {'name': 't', 'rows': 5, 'columns': [
+            {'name': 'v', 'valueExpression': '10'},
+            {'name': 'd', 'valueExpression': '100', 'anomalies': [{'condition': 'get_value("v") == 10', 'value': 'get_value() + 100'}]},
+        ]}
+        t = Table(json)
+        t.generate()
+        c = t.get_columns()[1]
+        self.assertEqual(c.values[0], 200)
+
     # TODO: test non daily trends and start and end dates
