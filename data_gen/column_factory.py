@@ -4,6 +4,7 @@ from data_gen.random_date_column import RandomDateColumn
 from data_gen.values_column import ValuesColumn
 from data_gen.key_column import KeyColumn
 from data_gen.person_name_column import PersonNameColumn
+from data_gen.date_multi_column import DateMultiColumn
 
 
 def create_column(json, get_value=None):
@@ -20,5 +21,7 @@ def create_column(json, get_value=None):
         return KeyColumn(json, get_value)
     elif json.get('personName'):
         return PersonNameColumn(json, get_value)
+    elif json.get('dateMultiColumn'):
+        return DateMultiColumn(json, get_value)
     # TODO: Error, unknown type
     return None

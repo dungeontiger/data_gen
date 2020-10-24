@@ -7,6 +7,7 @@ from data_gen.sequential_date_column import SequentialDateColumn
 from data_gen.values_column import ValuesColumn
 from data_gen.key_column import KeyColumn
 from data_gen.person_name_column import PersonNameColumn
+from data_gen.date_multi_column import DateMultiColumn
 
 
 class TestColumnFactory(unittest.TestCase):
@@ -39,3 +40,8 @@ class TestColumnFactory(unittest.TestCase):
         with open('tests/resources/columns/person_name_column.json') as f:
             c = create_column(json.load(f))
         self.assertIsInstance(c, PersonNameColumn, 'Create the correct person name column')  # noqa ES501
+
+    def test_create_date_multi_column(self):
+        with open('tests/resources/columns/date_multi_column.json') as f:
+            c = create_column(json.load(f))
+        self.assertIsInstance(c, DateMultiColumn, 'Create the date multi column')  # noqa ES501

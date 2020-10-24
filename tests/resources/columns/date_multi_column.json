@@ -1,0 +1,25 @@
+{
+    "name": "dateMultiColumn",
+    "dateMultiColumn": {
+        "startDate": "2010-01-01",
+        "endDate": "2011-12-31",
+        "columns": [
+            {
+                "name": "YEAR",
+                "type": "year"
+            },
+            {
+                "name": "MONTH",
+                "type": "month"
+            },
+            {
+                "name": "DAY",
+                "type": "day"
+            },
+            {
+                "name": "DATE",
+                "type": "date"
+            }
+        ]
+    }
+}

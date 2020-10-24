@@ -60,13 +60,53 @@ class TestTable(unittest.TestCase):
         self.assertEqual(c.values[4], 15.0)
 
     def test_anomaly(self):
-        json = {'name': 't', 'rows': 5, 'columns': [
-            {'name': 'v', 'valueExpression': '10'},
-            {'name': 'd', 'valueExpression': '100', 'anomalies': [{'condition': 'get_value("v") == 10', 'value': 'get_value() + 100'}]},
-        ]}
+        json = {'name': 't', 'rows': 5, 'columns': [{'name': 'v', 'valueExpression': '10'}, {'name': 'd', 'valueExpression': '100', 'anomalies': [{'condition': 'get_value("v") == 10', 'value': 'get_value() + 100'}]}]}
         t = Table(json)
         t.generate()
         c = t.get_columns()[1]
         self.assertEqual(c.values[0], 200)
 
+    def test_date_multi_column(self):
+        json = {
+                'name': 'multidate',
+                'rows': 90,
+                'columns': [
+                    {
+                        'name': 'randomStuff',
+                        'valueExpression': 'random()'
+                    },
+                    {
+                        'name': 'unused',
+                        'dateMultiColumn': {
+                            'startDate': '2020-01-01',
+                            'endDate': '2020-12-31',
+                            'columns': [
+                                {
+                                    'name': 'Year',
+                                    'type': 'year'
+                                },
+                                {
+                                    'name': 'Month',
+                                    'type': 'month'
+                                },
+                                {
+                                    'name': 'Day',
+                                    'type': 'day'
+                                },
+                                {
+                                    'name': 'Date',
+                                    'type': 'date'
+                                }
+                            ]
+                        }
+                    },
+                ]}
+        t = Table(json)
+        t.generate()
+        cols = t.get_columns()
+        self.assertEqual(len(cols), 5)
+        self.assertEqual(cols[1].values[0], 2020)
+        t.write(self.output_dir)
+
     # TODO: test non daily trends and start and end dates
+    # TODO: test cases that don't work, trend with multicolumn etc

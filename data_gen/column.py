@@ -25,3 +25,7 @@ class Column:
                 return random.choice(self.values)
             return self.values[-1]
         return self._get_value(column_name, table_name, random_value)
+
+    def get_columns(self):
+        # this is overridden for multicolumn columns
+        return [self]

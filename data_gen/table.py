@@ -25,15 +25,16 @@ class Table:
 
     def write(self, dir):
         file_name = os.path.join(dir, self.name) + '.csv'
+        cols = self.get_columns()
         with open(file_name, 'w') as f:
             writer = csv.writer(f)
-            header = [c.get_name() for c in self.columns]
+            header = [c.get_name() for c in cols]
             writer.writerow(header)
             # write out all the values of the columns
             # the length of the columns must all be the same
-            for i in range(len(self.columns[0].values)):
+            for i in range(len(cols[0].values)):
                 row = []
-                for c in self.columns:
+                for c in cols:
                     row.append(c.values[i])
                 writer.writerow(row)
 
@@ -50,4 +51,7 @@ class Table:
         return self._get_value(column_name, table_name, random_value=random_value)
 
     def get_columns(self):
-        return self.columns
+        columns = []
+        for c in self.columns:
+            columns.extend(c.get_columns())
+        return columns

@@ -73,3 +73,13 @@ Then a trend is applied (if applicable)
 Then anomalies are applied in the order of definition
 anomalies SET the value, so if you want to update the current value, use 'get_value() + 100'
 Both condition and value of an anomaly are expressions that are evaluated
+
+date multi columns allow you to create a dimension table
+    "name": "dateMultiColumn",
+    "dateMultiColumn": {
+Name is required but not used (*)
+List columns you have, choices are:
+- year
+- month
+- day
+- date
