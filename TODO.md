@@ -2,9 +2,7 @@ Before release:
 - multiple trends
 - random module references
 - math module reference
-- date hierarchy
-    - add all the pieces
-    - add a prefix
+- caplitalization, lower, upper functions
 - geography hierarchy
 - product hierarchy
 - error reporting

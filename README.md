@@ -83,3 +83,6 @@ List columns you have, choices are:
 - month
 - day
 - date
+- quarter 1 - 4 (uses calendar year)
+- half 1 - 2 (uses calendar year)
+- dayOfWeek (1-7, 1 is Monday)

@@ -30,9 +30,12 @@ class DateMultiColumn(Column):
             # the type in the JSON will match a function that returns
             # the correct information from the date
             self.type = _json['type']
+            self.prefix = _json.get('prefix')
 
         def generate(self, d):
             v = globals()[self.type](d)
+            if self.prefix is not None:
+                v = '{}{}'.format(self.prefix, v)
             self.values.append(v)
             return v
 
@@ -52,3 +55,61 @@ def day(d):
 def date(d):
     # just return the actual date
     return d.isoformat()
+
+
+def half(d):
+    return (d.month - 1) // 6 + 1
+
+
+def quarter(d):
+    return (d.month - 1) // 3 + 1
+
+
+def day_of_week(d):
+    return d.weekday() + 1
+
+
+def week(d):
+    return d.isocalendar()[1]
+
+
+def day_name(d):
+    return day_names[day_of_week(d) - 1]
+
+
+def short_day_name(d):
+    return day_name(d)[:3]
+
+
+def month_name(d):
+    return month_names[month(d) - 1]
+
+
+def short_month_name(d):
+    return month_name(d)[:3]
+
+
+day_names = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+]
+
+month_names = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+]
